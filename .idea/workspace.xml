@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="803b439e-b724-401c-b3b9-b773f894ad29" name="Changes" comment="created run for extractor">
+    <list default="true" id="803b439e-b724-401c-b3b9-b773f894ad29" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TagExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TagExtractor.java" afterDir="false" />
     </list>
@@ -29,12 +32,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="TagExtractorRun" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="TagExtractorRun" />
@@ -72,12 +75,20 @@
       <option name="project" value="LOCAL" />
       <updated>1711697986022</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="created a general program and gui somewhat works adjusting needed">
+      <created>1711700605580</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711700605580</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="created classes" />
     <MESSAGE value="created run for extractor" />
-    <option name="LAST_COMMIT_MESSAGE" value="created run for extractor" />
+    <MESSAGE value="created a general program and gui somewhat works adjusting needed" />
+    <option name="LAST_COMMIT_MESSAGE" value="created a general program and gui somewhat works adjusting needed" />
   </component>
 </project>

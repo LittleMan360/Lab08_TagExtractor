@@ -1,90 +1,94 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
+import java.util.List;
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.List;
 
+// TagExtractor class
 public class TagExtractor extends JFrame
 {
-    private JFileChooser fileChooser;
-    private JTextArea textArea;
-    private Map<String, Integer> tagCount;
+    // variables
+    private final JFileChooser fileChooser;
+    private final JTextArea textArea;
+    private final Map<String, Integer> tagCount;
 
-    private Set<String> stopWordsList;
+    private final Set<String> stopWordsList;
 
 
+    // constructor
     public TagExtractor()
     {
 
-
+        // buttons
         JButton openFileBtn = new JButton("Open File");
         JButton displayTagsBtn = new JButton("Display Tags");
         JButton saveTagsBtn = new JButton("Save Tags");
-        openFileBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                openFile();
-            }
-        });
+        openFileBtn.addActionListener(e -> openFile());
 
-        displayTagsBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                displayTags();
-            }
-        });
+        // display tags
+        displayTagsBtn.addActionListener(e -> displayTags());
 
-        saveTagsBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                SaveTags();
-            }
-        });
+        // save tags
+        saveTagsBtn.addActionListener(e -> SaveTags());
 
-
-
+        // file chooser
         fileChooser = new JFileChooser();
         textArea = new JTextArea();
-        tagCount = new HashMap<String, Integer>();
+        tagCount = new HashMap<>();
 
+        // scroll pane
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setPreferredSize(new Dimension(800, 600));
 
+        //panel layout
         JPanel panel = new JPanel();
         panel.add(openFileBtn);
         panel.add(displayTagsBtn);
         panel.add(saveTagsBtn);
 
+        // content pane
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
         contentPane.add(panel, BorderLayout.NORTH);
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
+        // frame
         setTitle("Tag Extractor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
 
-        stopWordsList = StopWords("Stop_Words.txt");
+        // stop words
+        stopWordsList = StopWords();
     }
 
+    // open file
     private void openFile() {
+        // file chooser
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             try {
+                // file reader
                 FileReader fileReader = new FileReader(file);
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 String line;
+                // process line
                 while ((line = bufferedReader.readLine()) != null) {
                     processLine(line);
                 }
+                // close file reader
                 fileReader.close();
+                // close buffered reader
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            // set text
             textArea.setText("File loaded: " + file.getName());
         }
     }
 
+    // process line
     private void processLine(String line) {
         String[] words = line.split("[^a-zA-Z0-9]+");
         for (String word : words) {
@@ -101,9 +105,10 @@ public class TagExtractor extends JFrame
     }
 
 
-    private Set<String> StopWords(String filename) {
+    // stop words
+    private Set<String> StopWords() {
         Set<String> stopWords = new HashSet<>();
-        try (Scanner scanner = new Scanner(new File(filename))) {
+        try (Scanner scanner = new Scanner(new File("Stop_Words.txt"))) {
             while (scanner.hasNextLine()) {
                 stopWords.add(scanner.nextLine().toLowerCase());
             }
@@ -113,6 +118,7 @@ public class TagExtractor extends JFrame
         return stopWords;
     }
 
+    // display tags
     private void displayTags() {
         List<Entry<String, Integer>> sortedTags = new ArrayList<>(tagCount.entrySet());
         sortedTags.sort(Entry.comparingByValue());
@@ -123,6 +129,7 @@ public class TagExtractor extends JFrame
         }
     }
 
+    // save tags
     private void SaveTags() {
         if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
